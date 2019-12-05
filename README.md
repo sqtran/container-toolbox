@@ -1,6 +1,6 @@
 # container-toolbox
 
-Just a little container that has `nginx` and `bonnie++`` installed so I can run some IO benchmarks against the underlying Persistent Volume.  
+Just a little container that has `nginx` and `bonnie++` installed so I can run some IO benchmarks against the underlying Persistent Volume.  
 
 __This is only useful if you're benchmarking PVs - don't bother using this for anything else__
 

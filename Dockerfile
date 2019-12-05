@@ -4,6 +4,7 @@ FROM nginx:mainline-alpine
 ENV BONNIE_VERSION=1.97.3 \
     SHELL=/bin/bash
 
+COPY ./convertResults.sh /tmp
 
 RUN \
   apk add --update bash g++ make perl wget openssl ioping && \
@@ -11,7 +12,8 @@ RUN \
   tar xvf bonnie++-${BONNIE_VERSION}.tgz && cd bonnie++-${BONNIE_VERSION}/ && \
   ./configure && make && make install && \
   rm /tmp/bonnie++-${BONNIE_VERSION}.tgz && \
-  rm -r /tmp/bonnie++-${BONNIE_VERSION}/
+  rm -r /tmp/bonnie++-${BONNIE_VERSION} && \
+  chmod +x /tmp/convertResults.sh
 
 EXPOSE 8080
 
@@ -20,5 +22,3 @@ USER nginx
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 CMD ["nginx", "-g", "daemon off;"]
-
-#CMD ['/usr/local/sbin/bonnie++']
